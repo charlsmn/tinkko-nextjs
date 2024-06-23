@@ -36,7 +36,7 @@ const authOptions = {
         }),
     ],
     pages: {
-        signIn: '/auth/login',
+        signIn: '/',
     },
     secret: process.env.NEXTAUTH_SECRET,
 }
