@@ -69,146 +69,144 @@ export default function RegisterForm() {
     })
 
     return (
-        <div className="w-full h-screen flex items-center justify-center flex-col">
-            <Card className="mx-auto max-w-sm">
-                <CardHeader>
-                    <CardTitle className="text-xl">Crear usuario</CardTitle>
-                    <CardDescription>
-                        Ingresa la información del nuevo usuario
-                    </CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <form action="" onSubmit={onSubmit}>
-                        <div className="grid gap-4">
-                            <div className="grid grid-cols-2 gap-4">
-                                <div className="grid gap-2">
-                                    <Label htmlFor="firstName">Nombre</Label>
-                                    <Input
-                                        id="firstName"
-                                        type="text"
-                                        placeholder="Max"
-                                        {...register('firstName', {
-                                            required: {
-                                                value: true,
-                                                message: 'Escribe tu nombre',
-                                            },
-                                        })}
-                                    />
-                                    {errors.firstName && (
-                                        <p className="text-red-500 text-xs">
-                                            {errors.firstName.message}
-                                        </p>
-                                    )}
-                                </div>
-                                <div className="grid gap-2">
-                                    <Label htmlFor="lastName">Apellido</Label>
-                                    <Input
-                                        id="lastName"
-                                        type="text"
-                                        placeholder="Robinson"
-                                        {...register('lastName', {
-                                            required: {
-                                                value: true,
-                                                message: 'Escribe tu apellido',
-                                            },
-                                        })}
-                                    />
-                                    {errors.lastName && (
-                                        <p className="text-red-500 text-xs">
-                                            {errors.lastName.message}
-                                        </p>
-                                    )}
-                                </div>
-                            </div>
+        <Card className="mx-auto max-w-sm">
+            <CardHeader>
+                <CardTitle className="text-xl">Crear usuario</CardTitle>
+                <CardDescription>
+                    Ingresa la información del nuevo usuario
+                </CardDescription>
+            </CardHeader>
+            <CardContent>
+                <form action="" onSubmit={onSubmit}>
+                    <div className="grid gap-4">
+                        <div className="grid grid-cols-2 gap-4">
                             <div className="grid gap-2">
-                                <Label htmlFor="email">Email</Label>
+                                <Label htmlFor="firstName">Nombre</Label>
                                 <Input
-                                    id="email"
-                                    type="email"
-                                    placeholder="m@example.com"
-                                    {...register('email', {
+                                    id="firstName"
+                                    type="text"
+                                    placeholder="Max"
+                                    {...register('firstName', {
                                         required: {
                                             value: true,
-                                            message: 'Escribe tu email',
-                                        },
-                                        pattern: {
-                                            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                                            message: 'Escribe un email válido',
+                                            message: 'Escribe tu nombre',
                                         },
                                     })}
                                 />
-                                {errors.email && (
+                                {errors.firstName && (
                                     <p className="text-red-500 text-xs">
-                                        {errors.email.message}
+                                        {errors.firstName.message}
                                     </p>
                                 )}
                             </div>
                             <div className="grid gap-2">
-                                <Label htmlFor="password">Contraseña</Label>
+                                <Label htmlFor="lastName">Apellido</Label>
                                 <Input
-                                    id="password"
-                                    type="password"
-                                    {...register('password', {
+                                    id="lastName"
+                                    type="text"
+                                    placeholder="Robinson"
+                                    {...register('lastName', {
                                         required: {
                                             value: true,
-                                            message: 'Escribe una contraseña',
-                                        },
-                                        minLength: {
-                                            value: 6,
-                                            message:
-                                                'La contraseña debe tener al menos 6 caracteres',
-                                        },
-                                        pattern: {
-                                            value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!#%*?&]{6,}$/,
-                                            message:
-                                                'La contraseña debe tener al menos una mayúscula, una minúscula y un número.',
+                                            message: 'Escribe tu apellido',
                                         },
                                     })}
                                 />
-                                {errors.password && (
+                                {errors.lastName && (
                                     <p className="text-red-500 text-xs">
-                                        {errors.password.message}
+                                        {errors.lastName.message}
                                     </p>
                                 )}
                             </div>
-                            <div className="grid gap-2">
-                                <Label htmlFor="confirmPassword">
-                                    Confirmar Contraseña
-                                </Label>
-                                <Input
-                                    id="confirmPassword"
-                                    type="password"
-                                    {...register('confirmPassword', {
-                                        required: {
-                                            value: true,
-                                            message: 'Confirma tu contraseña',
-                                        },
-                                        validate: (value) =>
-                                            value === watchPassword ||
-                                            'Las contrasenias no coinciden',
-                                    })}
-                                />
-                                {errors.confirmPassword && (
-                                    <p className="text-red-500 text-xs">
-                                        {errors.confirmPassword.message}
-                                    </p>
-                                )}
-                            </div>
-                            <Button
-                                type="submit"
-                                className="w-full"
-                                disabled={isLoading}
-                            >
-                                {isLoading ? (
-                                    <Loader className="animate-spin h-5 w-5" />
-                                ) : (
-                                    'Crear cuenta'
-                                )}
-                            </Button>
                         </div>
-                    </form>
-                </CardContent>
-            </Card>
-        </div>
+                        <div className="grid gap-2">
+                            <Label htmlFor="email">Email</Label>
+                            <Input
+                                id="email"
+                                type="email"
+                                placeholder="m@example.com"
+                                {...register('email', {
+                                    required: {
+                                        value: true,
+                                        message: 'Escribe tu email',
+                                    },
+                                    pattern: {
+                                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                        message: 'Escribe un email válido',
+                                    },
+                                })}
+                            />
+                            {errors.email && (
+                                <p className="text-red-500 text-xs">
+                                    {errors.email.message}
+                                </p>
+                            )}
+                        </div>
+                        <div className="grid gap-2">
+                            <Label htmlFor="password">Contraseña</Label>
+                            <Input
+                                id="password"
+                                type="password"
+                                {...register('password', {
+                                    required: {
+                                        value: true,
+                                        message: 'Escribe una contraseña',
+                                    },
+                                    minLength: {
+                                        value: 6,
+                                        message:
+                                            'La contraseña debe tener al menos 6 caracteres',
+                                    },
+                                    pattern: {
+                                        value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!#%*?&]{6,}$/,
+                                        message:
+                                            'La contraseña debe tener al menos una mayúscula, una minúscula y un número.',
+                                    },
+                                })}
+                            />
+                            {errors.password && (
+                                <p className="text-red-500 text-xs">
+                                    {errors.password.message}
+                                </p>
+                            )}
+                        </div>
+                        <div className="grid gap-2">
+                            <Label htmlFor="confirmPassword">
+                                Confirmar Contraseña
+                            </Label>
+                            <Input
+                                id="confirmPassword"
+                                type="password"
+                                {...register('confirmPassword', {
+                                    required: {
+                                        value: true,
+                                        message: 'Confirma tu contraseña',
+                                    },
+                                    validate: (value) =>
+                                        value === watchPassword ||
+                                        'Las contrasenias no coinciden',
+                                })}
+                            />
+                            {errors.confirmPassword && (
+                                <p className="text-red-500 text-xs">
+                                    {errors.confirmPassword.message}
+                                </p>
+                            )}
+                        </div>
+                        <Button
+                            type="submit"
+                            className="w-full"
+                            disabled={isLoading}
+                        >
+                            {isLoading ? (
+                                <Loader className="animate-spin h-5 w-5" />
+                            ) : (
+                                'Crear cuenta'
+                            )}
+                        </Button>
+                    </div>
+                </form>
+            </CardContent>
+        </Card>
     )
 }

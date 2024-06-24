@@ -5,5 +5,5 @@ export const DataNavlinks = [
     { name: 'Ciudades', href: '/dashboard/analytics', icon: LineChart },
     { name: 'Sedes', href: '/dashboard/orders', icon: ShoppingCart },
     { name: 'Solicitudes', href: '/dashboard/products', icon: Package },
-    { name: 'Usuarios', href: '/dashboard/customers', icon: Users2 },
+    { name: 'Usuarios', href: '/usuarios', icon: Users2 },
 ]
