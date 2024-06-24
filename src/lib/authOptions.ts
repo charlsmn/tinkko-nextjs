@@ -2,6 +2,13 @@ import CredentialsProvider from 'next-auth/providers/credentials'
 import db from '@/lib/db'
 import bcrypt from 'bcrypt'
 
+interface Token {
+    id: string
+    email: string
+    name: string
+    lastName: string
+}
+
 export const authOptions = {
     providers: [
         CredentialsProvider({
@@ -10,7 +17,12 @@ export const authOptions = {
                 email: { label: 'Email', type: 'email' },
                 password: { label: 'Password', type: 'password' },
             },
-            async authorize(credentials, req) {
+            async authorize(
+                credentials: Record<'email' | 'password', string> | undefined,
+                req
+            ) {
+                if (!credentials) throw new Error('Credenciales incorrectas')
+
                 const userFound = await db.user.findUnique({
                     where: {
                         email: credentials?.email,
@@ -27,9 +39,10 @@ export const authOptions = {
                 if (!matchPassword) throw new Error('Contraseña incorrecta')
 
                 return {
-                    id: userFound.id,
+                    id: userFound.id.toString(),
                     email: userFound.email,
                     name: userFound.firstName,
+                    lastName: userFound.lastName,
                 }
             },
         }),
@@ -38,4 +51,13 @@ export const authOptions = {
         signIn: '/login',
     },
     secret: process.env.NEXTAUTH_SECRET,
+    callbacks: {
+        async jwt({ token, user }: { token: Token; user: any }) {
+            return { ...token, ...user }
+        },
+        async session({ session, token }: { session: any; token: Token }) {
+            session.user = token as any
+            return session
+        },
+    },
 }
