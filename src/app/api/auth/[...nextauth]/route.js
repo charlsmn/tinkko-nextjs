@@ -3,7 +3,7 @@ import CredentialsProvider from 'next-auth/providers/credentials'
 import db from '@/lib/db'
 import bcrypt from 'bcrypt'
 
-const authOptions = {
+export const authOptions = {
     providers: [
         CredentialsProvider({
             name: 'Credentials',
@@ -11,6 +11,7 @@ const authOptions = {
                 email: { label: 'Email', type: 'email' },
                 password: { label: 'Password', type: 'password' },
             },
+
             async authorize(credentials, req) {
                 const userFound = await db.user.findUnique({
                     where: {
@@ -36,7 +37,7 @@ const authOptions = {
         }),
     ],
     pages: {
-        signIn: '/',
+        signIn: '/login',
     },
     secret: process.env.NEXTAUTH_SECRET,
 }
